@@ -18,6 +18,8 @@ const addOngValidation = data => {
         bornIn: Joi.date()
         
     })
+
+    return schema.validate(data);
 }
 
 module.exports.addOngValidation = addOngValidation;
