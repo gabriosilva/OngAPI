@@ -4,9 +4,11 @@ const dotenv = require('dotenv');
 const app = express();
 
 //Routes
+const ongRoute = require('./routes/ong');
 
 
 dotenv.config();
+
 
 
 //Handles the database connection
@@ -21,7 +23,7 @@ mongoose.connect(process.env.DB_CONNECT,{
 app.use(express.json());
 
 //Route Middlewares
-
+app.use('/api/ong',ongRoute);
 
 //Server
 const server = app.listen(process.env.SERVER_PORT || 3000,()=>{

@@ -19,7 +19,7 @@ const ongSchema = new mongoose.Schema({
         max: 255,
         required: true
     },
-    Email:{
+    email:{
         type:String,
         min:2,
         max:255,
