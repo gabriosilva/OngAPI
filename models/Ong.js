@@ -14,7 +14,7 @@ const ongSchema = new mongoose.Schema({
         required: false
     },
     identificationNumber:{
-        type:Number,
+        type:String,
         min:2,
         max: 255,
         required: true
@@ -26,7 +26,7 @@ const ongSchema = new mongoose.Schema({
         required:true
     },
     phone:{
-        type:Number,
+        type:String,
         min:2,
         max: 255,
         required: true
@@ -38,13 +38,13 @@ const ongSchema = new mongoose.Schema({
         required: false
     },
     type:{
-        type:Number,
+        type:String,
         min:1,
         max: 255,
         required: true
     },
     causes:{
-        type:Number,
+        type:String,
         min:1,
         max: 255,
         required: true
@@ -56,8 +56,8 @@ const ongSchema = new mongoose.Schema({
         required: true
     },
     zipcode:{
-        type:Number,
-        min:2,
+        type:String,
+        min:1,
         max: 255,
         required: false
     },
@@ -91,4 +91,4 @@ const ongSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('Ong',ongSchema);
+module.exports = mongoose.model('Ong', ongSchema);

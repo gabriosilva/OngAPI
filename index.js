@@ -12,12 +12,9 @@ dotenv.config();
 
 
 //Handles the database connection
-mongoose.connect(process.env.DB_CONNECT,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
-},()=>{
-    console.log('Connected to the DB');
-})
+mongoose.connect(process.env.DB_CONNECT,{useNewUrlParser:true,useUnifiedTopology:true},()=>{
+    console.log('Connected to Db!');
+});
 
 //Middleware
 app.use(express.json());
