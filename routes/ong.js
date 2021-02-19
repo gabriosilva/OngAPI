@@ -9,6 +9,12 @@ router.post('/addOng',async(req,res)=>{
     let errorArray = [];
     let success = true;
 
+    const {error} = addOngValidation(req.body);
+    if(error) return res.status(400).send({
+        success:!success,
+        error:[error.details[0]]
+    })
+    
     //Create the ong obj
     const ongObj = new Ong({
         name: req.body.name,
