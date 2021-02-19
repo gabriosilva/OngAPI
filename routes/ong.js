@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const Ong = require('../models/Ong');
 
+//Validators
+const {addOngValidation} = require('../validators/Ong');
+
 router.post('/addOng',async(req,res)=>{
     
     let errorArray = [];
