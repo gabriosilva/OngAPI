@@ -4,5 +4,10 @@
   "description": "An Api for NOGs",
   "main": "index.js",
   "author": "gabrio122",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.17"
+  }
 }
