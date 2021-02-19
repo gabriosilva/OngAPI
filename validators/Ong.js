@@ -14,7 +14,7 @@ const addOngValidation = data => {
         country: Joi.string().min(2).max(255).required(),
         state: Joi.string().min(2).max(255).required(),
         city: Joi.string().min(2).max(255).required(),
-        addressNumber: Joi.string().min(2).max(255),
+        addressNumber: Joi.string().min(0).max(255),
         bornIn: Joi.date()
         
     })
