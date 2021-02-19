@@ -75,7 +75,7 @@ const ongSchema = new mongoose.Schema({
     },
     addressNumber:{
         type:String,
-        min:2,
+        min:0,
         max: 255,
         required: false
     },
