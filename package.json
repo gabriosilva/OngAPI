@@ -1,0 +1,8 @@
+{
+  "name": "ong-api",
+  "version": "1.0.0",
+  "description": "An Api for NOGs",
+  "main": "index.js",
+  "author": "gabrio122",
+  "license": "MIT"
+}
