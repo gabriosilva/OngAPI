@@ -4,7 +4,7 @@ const addOngValidation = data => {
     const schema = Joi.object({
         name: Joi.string().min(2).max(255).required(),
         description:Joi.string().min(6).max(255),
-        identificationNumber:Joi.number().min(2).max(255).required(),
+        identificationNumber:Joi.number().min(0).max(999999999999999999999).required(),
         email:Joi.string().min(2).max(255).email().required(),
         phone:Joi.number().min(0).max(999999999999999999999).required(),
         zipcode:Joi.number().min(0).max(999999999999999999999).required(),
