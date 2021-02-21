@@ -78,6 +78,9 @@ exports.get_ong_get = async(req,res)=>{
 
     //get object from database
     try{
+        //get only verified Ongs
+        req.body.verified = true;
+        
         const ongObj = await Ong.findOne(req.body);
         let responseObj = {
             data:[],
