@@ -112,3 +112,50 @@ exports.get_ong_get = async(req,res)=>{
 
     }
 }
+
+exports.set_verified_post = async(req,res)=>{
+    
+    let errorArray = [];
+    let success = true;
+
+    //validator
+    //const {error} = setVerifiedValidation(req.body);
+    
+    if(error) return res.status(400).send({
+        success:!success,
+        error:[error.details[0]]
+    })
+
+    try{
+        const updatedOng = await Ong.findOneAndUpdate(req.body._id,{verified:true});
+        
+        let responseObj = {
+            data:[],
+            success:success,
+            error:errorArray
+        }
+        if(ongObj){
+            responseObj.data.push(updatedOng);
+        }
+
+        res.status(200).send(responseObj);
+
+    }catch(err){
+
+        success = false;
+        const error = {
+            message:err.message,
+            description: err.description
+        }
+        errorArray.push(error);
+        
+        const responseObj = {
+            data:[],
+            success:success,
+            error:errorArray
+        }
+
+        res.status(502).send(responseObj);
+
+    }
+}
