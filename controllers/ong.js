@@ -135,7 +135,7 @@ exports.set_verified_post = async(req,res)=>{
             success:success,
             error:errorArray
         }
-        if(ongObj){
+        if(updatedOng){
             responseObj.data.push(updatedOng);
         }
 
