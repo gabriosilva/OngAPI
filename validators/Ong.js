@@ -40,5 +40,14 @@ const getOngValidation = data =>{
     return schema.validate(data);
 }
 
+const setVerifiedValidation = data =>{
+    const schema = Joi.object({
+        _id: Joi.string()
+    })
+
+    return schema.validate(data);
+}
+
 module.exports.addOngValidation = addOngValidation;
 module.exports.getOngValidation = getOngValidation;
+module.exports.setVerifiedValidation = setVerifiedValidation;

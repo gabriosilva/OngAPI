@@ -2,7 +2,7 @@
 const Ong = require('../models/Ong');
 
 //Validators
-const { addOngValidation,getOngValidation } = require('../validators/Ong');
+const { addOngValidation,getOngValidation,setVerifiedValidation } = require('../validators/Ong');
 
 //Controller functions
 exports.add_ong_post = async(req,res)=>{
@@ -119,7 +119,7 @@ exports.set_verified_post = async(req,res)=>{
     let success = true;
 
     //validator
-    //const {error} = setVerifiedValidation(req.body);
+    const {error} = setVerifiedValidation(req.body);
     
     if(error) return res.status(400).send({
         success:!success,
@@ -127,6 +127,7 @@ exports.set_verified_post = async(req,res)=>{
     })
 
     try{
+        console.log('ok');
         const updatedOng = await Ong.findOneAndUpdate(req.body._id,{verified:true});
         
         let responseObj = {
