@@ -83,6 +83,10 @@ const ongSchema = new mongoose.Schema({
         type:Date,
         required: false
     },
+    verified:{
+        type:Boolean,
+        default: false
+    },    
     createdAt:{
         type:Date,
         default:Date.now
