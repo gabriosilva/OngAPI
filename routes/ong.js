@@ -77,6 +77,7 @@ router.get('/getOng',async(req,res)=>{
         if(ongObj){
             responseObj.data.push(ongObj);
         }
+        
         res.status(200).send(responseObj);
 
     }catch(err){
