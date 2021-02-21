@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Ong = require('../models/Ong');
 
 //Validators
-const {addOngValidation} = require('../validators/Ong');
+const { addOngValidation,getOngValidation } = require('../validators/Ong');
 
 router.post('/addOng',async(req,res)=>{
     
@@ -67,6 +67,14 @@ router.get('/getOng',async(req,res)=>{
     let errorArray = [];
     let success = true;
 
+    //validator
+    const {error} = getOngValidation(req.body);
+    if(error) return res.status(400).send({
+        success:!success,
+        error:[error.details[0]]
+    })
+
+    //get object from database
     try{
         const ongObj = await Ong.findOne(req.body);
         let responseObj = {
@@ -77,7 +85,7 @@ router.get('/getOng',async(req,res)=>{
         if(ongObj){
             responseObj.data.push(ongObj);
         }
-        
+
         res.status(200).send(responseObj);
 
     }catch(err){
