@@ -63,4 +63,40 @@ router.post('/addOng',async(req,res)=>{
     };
 });
 
+router.get('/getOng',async(req,res)=>{
+    let errorArray = [];
+    let success = true;
+
+    try{
+        const ongObj = await Ong.findOne(req.body);
+        let responseObj = {
+            data:[],
+            success:success,
+            error:errorArray
+        }
+        if(ongObj){
+            responseObj.data.push(ongObj);
+        }
+        res.status(200).send(responseObj);
+
+    }catch(err){
+
+        success = false;
+        const error = {
+            message:err.message,
+            description: err.description
+        }
+        errorArray.push(error);
+        
+        const responseObj = {
+            data:[],
+            success:success,
+            error:errorArray
+        }
+
+        res.status(502).send(responseObj);
+
+    }
+})
+
 module.exports = router;
