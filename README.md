@@ -1,7 +1,4 @@
 # OngAPI
-<<<<<<< HEAD
-Que tal uma api para acessar ONGs?
-=======
 
 Uma api criada para facilitar o acesso à informações sobre ongs brasileiras
 
@@ -14,4 +11,3 @@ See also the list of [contributors](https://github.com/gabriosilva/OngAPI/contri
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
->>>>>>> master
