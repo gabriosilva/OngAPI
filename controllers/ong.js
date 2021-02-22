@@ -130,14 +130,14 @@ exports.get_unverified_ong_get = async(req,res)=>{
         //get only verified Ongs
         req.body.verified = false;
         
-        const ongObj = await Ong.findOne(req.body);
+        const ongObj = await Ong.find(req.body);
         let responseObj = {
             data:[],
             success:success,
             error:errorArray
         }
         if(ongObj){
-            responseObj.data.push(ongObj);
+            responseObj.data = ongObj;
         }
 
         res.status(200).send(responseObj);
@@ -176,16 +176,15 @@ exports.set_verified_post = async(req,res)=>{
     })
 
     try{
-        console.log('ok');
-        const updatedOng = await Ong.findOneAndUpdate(req.body._id,{verified:true});
-        
+        const updatedOng = await Ong.findOneAndUpdate({"_id":req.body._id},{verified:true});
+        const ongObj = await Ong.findOne({"_id":req.body._id});
         let responseObj = {
             data:[],
             success:success,
             error:errorArray
         }
         if(updatedOng){
-            responseObj.data.push(updatedOng);
+            responseObj.data.push(ongObj);
         }
 
         res.status(200).send(responseObj);

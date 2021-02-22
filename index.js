@@ -12,7 +12,12 @@ dotenv.config();
 
 
 //Handles the database connection
-mongoose.connect(process.env.DB_CONNECT,{useNewUrlParser:true,useUnifiedTopology:true},()=>{
+mongoose.connect(process.env.DB_CONNECT,
+    {
+        useNewUrlParser:true,
+        useUnifiedTopology:true,
+        useFindAndModify:false
+    },()=>{
     console.log('Connected to Db!');
 });
 
