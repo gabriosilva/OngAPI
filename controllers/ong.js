@@ -113,6 +113,55 @@ exports.get_ong_get = async(req,res)=>{
     }
 }
 
+exports.get_unverified_ong_get = async(req,res)=>{
+    
+    let errorArray = [];
+    let success = true;
+
+    //validator
+    const {error} = getOngValidation(req.body);
+    if(error) return res.status(400).send({
+        success:!success,
+        error:[error.details[0]]
+    })
+
+    //get object from database
+    try{
+        //get only verified Ongs
+        req.body.verified = false;
+        
+        const ongObj = await Ong.findOne(req.body);
+        let responseObj = {
+            data:[],
+            success:success,
+            error:errorArray
+        }
+        if(ongObj){
+            responseObj.data.push(ongObj);
+        }
+
+        res.status(200).send(responseObj);
+
+    }catch(err){
+
+        success = false;
+        const error = {
+            message:err.message,
+            description: err.description
+        }
+        errorArray.push(error);
+        
+        const responseObj = {
+            data:[],
+            success:success,
+            error:errorArray
+        }
+
+        res.status(502).send(responseObj);
+
+    }
+}
+
 exports.set_verified_post = async(req,res)=>{
     
     let errorArray = [];
