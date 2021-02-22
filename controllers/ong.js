@@ -4,6 +4,18 @@ const Ong = require('../models/Ong');
 //Validators
 const { addOngValidation,getOngValidation,setVerifiedValidation } = require('../validators/Ong');
 
+async function ongExists(ongObj){
+    const ongExist = await Ong.findOne(
+        {
+            $or:[
+                {_id: ongObj._id},
+                {identificationNumber: ongObj.identificationNumber},
+                {email:ongObj.email}
+            ]
+        })
+    return ongExist;
+}
+
 //Controller functions
 exports.add_ong_post = async(req,res)=>{
     
@@ -36,13 +48,25 @@ exports.add_ong_post = async(req,res)=>{
     });
 
     try{
-        const sentOng = await ongObj.save();
+        const ongExist = await ongExists(ongObj);
         const responseObj = {
-            data:[sentOng],
+            data:[],
             success:success,
             error:errorArray
         }
-        res.status(200).send(sentOng);
+        if(!ongExist){
+            const sentOng = await ongObj.save();
+            responseObj.data.push(sentOng);
+           return res.status(200).send(responseObj);
+        }
+
+        responseObj.success = false;
+        responseObj.error.push({
+            message: "Ong already exists!"
+        })
+
+        return res.status(400).send(responseObj);
+        
 
     }catch(err){
 
@@ -59,7 +83,7 @@ exports.add_ong_post = async(req,res)=>{
             error:errorArray
         }
 
-        res.status(502).send(responseObj);
+        return res.status(502).send(responseObj);
         
     };
 }
