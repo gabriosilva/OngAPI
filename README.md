@@ -1,7 +1,9 @@
 # OngAPI
 
-Uma api criada para facilitar o acesso à informações sobre ongs brasileiras
+Uma api criada para facilitar o acesso à informações sobre ongs brasileiras (in development)
 
+# How to use
+(in development)
 ## Authors
 
 * **Gabrio Lina** - *Initial work* - [gabriosilva](https://github.com/gabriosilva)
