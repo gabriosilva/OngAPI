@@ -4,6 +4,7 @@ const Ong = require('../models/Ong');
 //Validators
 const { addOngValidation,getOngValidation,setVerifiedValidation } = require('../validators/Ong');
 
+//Verify if the ong already exist on the database
 async function ongExists(ongObj){
     const ongExist = await Ong.findOne(
         {
